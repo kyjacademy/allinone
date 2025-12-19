@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KYJ 아카데미 - 올인원 패키지</title>
+    <meta property="og:title" content="KYJ 아카데미 - 올인원 패키지">
+    <meta property="og:description" content="독보적인 질주는 이미 시작되었다. 성공하는 사장님들의 비밀 무기 "올인원 패키지">
+    <meta property="og:image" content="./images/thumbnail.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* [폰트 적용] */
+        @font-face {
+            font-family: 'Simple';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Danjo-bold-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-display: swap;
+        }
+
+        /* [모바일 최적화] 한국어 줄바꿈 방지 */
+        body {
+            word-break: keep-all; 
+            overflow-x: hidden;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .luxury-border {
+            position: relative;
+        }
+        .luxury-border::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #D4AF37;
+        }
+        /* Table Styles */
+        .pricing-table th, .pricing-table td {
+            padding: 1rem;
+            text-align: center;
+            white-space: nowrap; /* 모바일에서 표 깨짐 방지 */
+        }
+        @media (min-width: 768px) {
+            .pricing-table th, .pricing-table td {
+                white-space: normal;
+            }
+        }
+        .pricing-table tr:not(:last-child) {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- [SPECIAL BONUS] 사장의 달력 섹션 스타일 --- */
+        .calendar-section {
+            background: radial-gradient(circle at center, #2a2510 0%, #000000 100%);
+            border-top: 2px solid #D4AF37;
+            border-bottom: 2px solid #D4AF37;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .spotlight {
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.15) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .calendar-layout {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (max-width: 1024px) {
+            .calendar-layout {
+                flex-direction: column-reverse; /* 모바일: 이미지가 위로 */
+                gap: 30px;
+            }
+        }
+
+        .calendar-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .calendar-image {
+            flex: 1;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .calendar-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .calendar-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .calendar-tag {
+            display: inline-block;
+            background-color: #D4AF37;
+            color: #000;
+            padding: 5px 12px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 2rem; /* 모바일 최적화 */
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            font-family: 'Simple', serif; 
+        }
+        
+        @media (min-width: 768px) {
+            .section-title { font-size: 3.5rem; }
+        }
+
+        .calendar-quote {
+            font-size: 1.3rem; /* 모바일 최적화 */
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.4;
+            margin-bottom: 30px;
+            border-left: 4px solid #D4AF37;
+            padding-left: 20px;
+            font-family: 'Simple', serif;
+        }
+        
+        @media (min-width: 768px) {
+            .calendar-quote { font-size: 1.5rem; }
+        }
+
+        .text-gold { color: #D4AF37; }
+
+        .feature-item {
+            margin-bottom: 20px;
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(212,175,55,0.1);
+            transition: background 0.3s;
+        }
+        
+        .feature-item:hover {
+            background: rgba(212,175,55,0.05);
+            border-color: rgba(212,175,55,0.3);
+        }
+        
+        .feature-item strong {
+            color: #D4AF37;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .feature-item p {
+            color: #aaa;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .month-plan {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        @media (max-width: 640px) {
+            .month-plan { flex-direction: column; }
+        }
+        
+        .month-box {
+            background: #111;
+            border: 1px solid #444;
+            padding: 10px;
+            flex: 1;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+        
+        .month-box span {
+            display: block;
+            color: #D4AF37;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'midnight': '#020617',
+                        'prestige-gold': '#D4AF37',
+                        'gold-light': '#FCD34D',
+                        'dark-card': '#0F172A',
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'sans-serif'],
+                        serif: ['"Simple"', 'serif'], 
+                    },
+                    boxShadow: {
+                        'gold-glow': '0 0 20px rgba(212, 175, 55, 0.3)',
+                        'gold-border': '0 0 0 1px #D4AF37',
+                    },
+                    animation: {
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'zoom-out': 'zoomOut 20s infinite alternate',
+                    },
+                    keyframes: {
+                        shimmer: {
+                            '0%': { backgroundPosition: '-1000px 0' },
+                            '100%': { backgroundPosition: '1000px 0' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        zoomOut: {
+                            '0%': { transform: 'scale(1.1)' },
+                            '100%': { transform: 'scale(1.0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans text-gray-200 bg-midnight antialiased overflow-x-hidden selection:bg-prestige-gold selection:text-black">
+
+    <!-- Top Urgent Bar -->
+    <div class="fixed top-0 w-full z-50 bg-gradient-to-r from-gray-900 via-black to-gray-900 border-b border-white/10">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center text-xs md:text-sm">
+            <span class="text-prestige-gold font-bold tracking-wider"><i class="fas fa-crown mr-2"></i>ALL IN ONE PACKAGE</span>
+            <span class="text-gray-400">1년 이내 완강 시 <span class="text-white font-bold">특별 혜택 제공 중</span></span>
+        </div>
+    </div>
+
+    <!-- Section 1: Hero (Video Background) -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background -->
+        <div class="absolute inset-0 z-0 overflow-hidden flex items-center justify-center bg-black">
+            <!-- [비디오 배경] 1:1 비율 엄격 유지, fallback 이미지 포함 -->
+            <video 
+                autoplay 
+                loop 
+                muted 
+                playsinline
+                poster="./assets/images/hero-fallback.jpg"
+                class="min-h-full min-w-full object-cover opacity-60"
+                style="aspect-ratio: 1/1; width: auto; height: 100%; max-width: none;">
+                <source src="./assets/videos/hero-background.mp4" type="video/mp4">
+                <!-- Fallback for browsers that don't support video -->
+                Your browser does not support the video tag.
+            </video>
+            
+            <!-- [그라데이션] 아래쪽은 어둡게(텍스트 잘 보이게), 위쪽은 투명하게 -->
+            <div class="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/70 to-midnight/30"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="inline-block border border-prestige-gold/50 rounded-full px-6 py-2 mb-8 bg-black/50 backdrop-blur-sm animate-pulse shadow-lg">
+                <span class="text-prestige-gold font-bold tracking-widest uppercase text-sm">Limited Edition Package</span>
+            </div>
+
+            <!-- 타이틀 -->
+            <p class="text-xl md:text-3xl font-serif text-white mb-2 tracking-widest animate-fade-in-up drop-shadow-md">
+                독보적인 질주는 이미 시작되었다
+            </p>
+            <p class="text-lg md:text-2xl font-light text-gray-300 mb-6 drop-shadow-lg">
+                성공하는 사장님들의 비밀 무기
+            </p>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-9xl font-serif font-black leading-normal mb-12 text-white gold-gradient-text drop-shadow-2xl py-4">
+                올인원 패키지
+            </h1>
+
+            <!-- 혜택 버튼 그룹 -->
+            <div class="flex flex-col md:flex-row gap-3 md:gap-4 max-w-4xl mx-auto justify-center items-stretch">
+                <!-- 버튼 1: 32% 할인 -->
+                <div class="flex-1 bg-black/60 backdrop-blur-sm border border-prestige-gold/30 rounded-lg px-4 py-3 hover:border-prestige-gold/60 transition-all duration-300 hover:bg-black/80">
+                    <div class="text-prestige-gold font-bold text-sm md:text-base mb-1">32% 할인</div>
+                    <div class="text-white text-xs md:text-sm font-medium">최대 수강료 할인</div>
+                </div>
+                
+                <!-- 버튼 2: 사장의 달력 -->
+                <div class="flex-1 bg-black/60 backdrop-blur-sm border border-prestige-gold/30 rounded-lg px-4 py-3 hover:border-prestige-gold/60 transition-all duration-300 hover:bg-black/80">
+                    <div class="text-prestige-gold font-bold text-sm md:text-base mb-1">"따라만 하면 성공하는 치트키"</div>
+                    <div class="text-white text-xs md:text-sm font-medium">사장의 달력 2026</div>
+                </div>
+                
+                <!-- 버튼 3: 광고학교 할인 -->
+                <div class="flex-1 bg-black/60 backdrop-blur-sm border border-prestige-gold/30 rounded-lg px-4 py-3 hover:border-prestige-gold/60 transition-all duration-300 hover:bg-black/80">
+                    <div class="text-prestige-gold font-bold text-sm md:text-base mb-1">대한온라인광고학교</div>
+                    <div class="text-white text-xs md:text-sm font-medium">20% 할인권</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Special Benefits -->
+    <section class="py-16 md:py-24 bg-midnight relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-2xl md:text-4xl font-bold text-white mb-4 luxury-border inline-block pb-4">올인원 특별 혜택</h2>
+                <p class="text-gray-400 mt-4 text-sm md:text-base">오직 패키지 구매자에게만 주어지는 특권입니다.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 md:gap-8 mb-12">
+                <!-- Benefit 1 -->
+                <div class="glass-panel p-6 md:p-8 rounded-2xl text-center group hover:bg-white/5 transition-colors">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-prestige-gold/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-prestige-gold transition-colors duration-300">
+                        <i class="fas fa-percent text-xl md:text-2xl text-prestige-gold group-hover:text-black"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-3">01. 역대급 할인</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        김유진 사부님의 모든 강의를<br>
+                        파격적인 할인 혜택으로 누리세요.<br>
+                        개별 구매 대비 압도적인 가격 우위.
+                    </p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="glass-panel p-6 md:p-8 rounded-2xl text-center border-prestige-gold shadow-gold-glow transform md:-translate-y-4 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-prestige-gold text-black text-xs font-bold px-3 py-1">BEST</div>
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-prestige-gold rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-calendar-alt text-xl md:text-2xl text-black"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-prestige-gold mb-3">02. 사장의 달력 2026</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        따라만 하면 성공하는 치트키.<br>
+                        365일 매일 내려지는 김사부의 코칭.<br>
+                        <span class="text-white font-bold underline">더 이상 고민하지 마세요.</span>
+                    </p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="glass-panel p-6 md:p-8 rounded-2xl text-center group hover:bg-white/5 transition-colors">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-prestige-gold/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-prestige-gold transition-colors duration-300">
+                        <i class="fas fa-ad text-xl md:text-2xl text-prestige-gold group-hover:text-black"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-3">03. 광고학교 20% 할인</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        '대한온라인광고학교' 특별 할인권 제공.<br>
+                        제대로 된 광고로 내 브랜드를<br>
+                        세상에 널리 알리세요.
+                    </p>
+                </div>
+            </div>
+
+            <!-- [수정됨] 수강신청 버튼 베네핏 하단으로 이동 및 링크 적용 -->
+            <div class="text-center">
+                <!-- 실제 링크는 href 속성에 입력하세요 (예: href="https://example.com/apply") -->
+                <a href="#apply-link" class="group relative inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-black transition-all duration-200 bg-gradient-to-r from-prestige-gold to-gold-light rounded-full focus:outline-none shadow-gold-glow hover:scale-105">
+                    <span class="relative">지금 수강 신청하기</span>
+                    <i class="fas fa-chevron-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Line-up (Curriculum) -->
+    <section class="py-16 md:py-24 bg-dark-card relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <!-- Header Centered -->
+            <div class="text-center mb-12 md:mb-16 border-b border-gray-800 pb-8">
+                <span class="text-prestige-gold font-bold tracking-widest uppercase mb-2 block text-sm md:text-base">Curriculum</span>
+                <h2 class="text-3xl md:text-5xl font-black text-white mb-6">올인원 패키지 LINE-UP</h2>
+                <p class="text-gray-400 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+                    매출 상승부터 브랜딩, AI 자동화, 가격 전략까지.<br class="hidden md:block">
+                    사장님이 갖춰야 할 모든 무기를 담았습니다.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- [수정됨] 각 과목 카드에 링크 적용 (div -> a) -->
+                
+                <!-- Course 1 -->
+                <a href="#course-1-link" class="block bg-midnight p-6 md:p-8 rounded-xl border border-gray-800 hover:border-prestige-gold transition-colors group cursor-pointer">
+                    <div class="flex justify-between items-start mb-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-white group-hover:text-prestige-gold transition-colors">장사는 전략이다 <span class="text-sm font-normal text-gray-500 ml-2 block md:inline">심화과정</span></h3>
+                        <i class="fas fa-chess-king text-3xl text-gray-700 group-hover:text-prestige-gold"></i>
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed text-sm md:text-base">
+                        구체적인 매출 상승 전략과 실전 적용법.<br>
+                        고객의 머릿속에 브랜드를 강력히 각인시키는 스킬 전수.<br>
+                        <strong class="text-white">이미 3,300여 명의 수강생이 매출 상승 경험.</strong>
+                    </p>
+                    <div class="w-full bg-gray-800 rounded-lg overflow-hidden relative" style="aspect-ratio: 1200/630;">
+                        <img src="./assets/images/course-jangjeon.jpg" class="w-full h-full object-cover opacity-60" alt="장사는 전략이다">
+                        <!-- Hover Overlay Effect -->
+                        <div class="absolute inset-0 bg-prestige-gold/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                </a>
+
+                <!-- Course 2 -->
+                <a href="#course-2-link" class="block bg-midnight p-6 md:p-8 rounded-xl border border-gray-800 hover:border-prestige-gold transition-colors group cursor-pointer">
+                    <div class="flex justify-between items-start mb-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-white group-hover:text-prestige-gold transition-colors">페이머스 <span class="text-sm font-normal text-gray-500 ml-2 block md:inline">브랜딩의 시작</span></h3>
+                        <i class="fas fa-star text-3xl text-gray-700 group-hover:text-prestige-gold"></i>
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed text-sm md:text-base">
+                        대체 불가한 브랜드를 구축하는 과정.<br>
+                        스쳐 지나가기만 해도 강렬히 기억되는 포지셔닝 확립.<br>
+                        <strong class="text-white">무한 경쟁에서 자유로워지는 비결.</strong>
+                    </p>
+                    <div class="w-full bg-gray-800 rounded-lg overflow-hidden relative" style="aspect-ratio: 1200/630;">
+                        <img src="./assets/images/course-famous.jpg" class="w-full h-full object-cover opacity-60" alt="페이머스">
+                        <div class="absolute inset-0 bg-prestige-gold/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                </a>
+
+                <!-- Course 3 -->
+                <a href="#course-3-link" class="block bg-midnight p-6 md:p-8 rounded-xl border border-gray-800 hover:border-prestige-gold transition-colors group cursor-pointer">
+                    <div class="flex justify-between items-start mb-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-white group-hover:text-prestige-gold transition-colors">마케팅 자동화 요격기</h3>
+                        <i class="fas fa-robot text-3xl text-gray-700 group-hover:text-prestige-gold"></i>
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed text-sm md:text-base">
+                        13가지 AI를 활용하여 마케팅 과정을 간편하게 자동화.<br>
+                        누구나 쉽게 따라 할 수 있는 구성.<br>
+                        <strong class="text-white">즉시 매장에 적용 가능한 기술.</strong>
+                    </p>
+                    <div class="w-full bg-gray-800 rounded-lg overflow-hidden relative" style="aspect-ratio: 1200/630;">
+                        <img src="./assets/images/course-ai-marketing.jpg" class="w-full h-full object-cover opacity-60" alt="마케팅 자동화">
+                        <div class="absolute inset-0 bg-prestige-gold/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                </a>
+
+                <!-- Course 4 -->
+                <a href="#course-4-link" class="block bg-midnight p-6 md:p-8 rounded-xl border border-gray-800 hover:border-prestige-gold transition-colors group cursor-pointer">
+                    <div class="flex justify-between items-start mb-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-white group-hover:text-prestige-gold transition-colors">당신의 가격은 틀렸습니다</h3>
+                        <i class="fas fa-tags text-3xl text-gray-700 group-hover:text-prestige-gold"></i>
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed text-sm md:text-base">
+                        매출과 순이익을 폭발적으로 끌어올리는 가격 전략.<br>
+                        고객 만족도를 유지하며 높은 가격 제안.<br>
+                        <strong class="text-white">더욱 강력한 무기 장착.</strong>
+                    </p>
+                    <div class="w-full bg-gray-800 rounded-lg overflow-hidden relative" style="aspect-ratio: 1200/630;">
+                        <img src="./assets/images/course-pricing.jpg" class="w-full h-full object-cover opacity-60" alt="당신의 가격은 틀렸습니다">
+                        <div class="absolute inset-0 bg-prestige-gold/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Bonus Section (The Calendar) -->
+    <section class="calendar-section">
+        <div class="spotlight"></div>
+        <div class="container mx-auto px-6" style="position: relative; z-index: 2;">
+            <div class="text-center" style="margin-bottom: 30px; md:margin-bottom: 50px;">
+                <span class="calendar-tag">SPECIAL BONUS</span>
+                <h2 class="section-title" style="color: #fff; margin-top: 10px;">
+                    올인원 패키지 <span style="color:#D4AF37;">X</span> 사장의 달력
+                </h2>
+                <p style="color: #D4AF37; letter-spacing: 2px;">THEORY TO ACTION</p>
+            </div>
+
+            <div class="calendar-layout">
+                <!-- Text Content -->
+                <div class="calendar-text">
+                    <div class="calendar-quote">
+                        "올인원 패키지로 무장하셨습니까?<br>
+                        그렇다면 2026년,<br>
+                        <span class="text-gold">실패할 자유를 박탈합니다.</span>"
+                    </div>
+                    
+                    <p style="color: #ccc; margin-bottom: 30px; line-height: 1.6; font-size: 0.95rem;">
+                        좋은 전략과 독보적인 브랜딩을 배워도 "오늘은 뭐 하지?" 고민만 한다면 매출은 오르지 않습니다.<br>
+                        김사부가 당신의 책상 위에서 매일 아침 '승리의 전략'을 명령합니다.
+                    </p>
+
+                    <div class="calendar-features">
+                        <div class="feature-item">
+                            <strong>01. 고민 금지</strong>
+                            <p>김사부가 시키는 대로만 움직이십시오. 당신의 하루는 이미 '성공'으로 설계되었습니다.</p>
+                        </div>
+                        <div class="feature-item">
+                            <strong>02. 전설의 경로</strong>
+                            <p>적힌 대로 따라오십시오. 비법을 찾아 헤맬 시간조차 아깝습니다.</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <strong>03. 365일 밀착 코칭</strong>
+                            <div class="month-plan">
+                                <div class="month-box"><span>1월</span>판을 짜고 기선제압</div>
+                                <div class="month-box"><span>6월</span>비수기 타파 역발상</div>
+                                <div class="month-box"><span>12월</span>압도적 성과 피날레</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 30px; color: #D4AF37; font-weight: bold; font-size: 0.9rem;">
+                        ※ 추후 정식 판매 예정작 / 패키지 구매자 한정 무료 제공
+                    </p>
+                </div>
+
+                <!-- Image Content (High Quality Mockup) -->
+                <div class="calendar-image">
+                    <img src="./assets/images/calendar-2026.jpg" alt="사장의 달력 2026 이미지">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Pricing Table & Final CTA -->
+    <section id="pricing" class="py-16 md:py-24 bg-midnight text-center relative">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-2xl md:text-5xl font-black text-white mb-6 leading-relaxed md:leading-loose">
+                대한민국 자영업계의 전설로 가는<br>
+                <span class="gold-gradient-text">확정된 지도</span>
+            </h2>
+            <p class="text-gray-400 mb-12 md:mb-16 text-sm md:text-base">올인원 패키지 등록시 '사장의 달력 2026'이 제공됩니다.</p>
+
+            <div class="bg-dark-card rounded-2xl overflow-hidden border border-gray-800 shadow-2xl mb-12">
+                <div class="overflow-x-auto">
+                    <table class="w-full pricing-table text-sm md:text-base">
+                        <thead>
+                            <tr class="bg-gray-900 text-white">
+                                <th class="w-1/3 py-4 md:py-6 text-base md:text-lg">구분</th>
+                                <th class="w-1/3 py-4 md:py-6 text-base md:text-lg text-gray-400">정상가</th>
+                                <th class="w-1/3 py-4 md:py-6 text-lg md:text-xl text-prestige-gold font-bold bg-prestige-gold/10 border-t-4 border-prestige-gold relative">
+                                    올인원 패키지
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-300">
+                            <tr>
+                                <td class="font-bold text-white text-left pl-4 md:pl-8">강의 전체</td>
+                                <td>10,980,000원</td>
+                                <td class="bg-prestige-gold/5 font-bold text-white">포함 (무제한)</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-white text-left pl-4 md:pl-8">사장의 달력 2026</td>
+                                <td>구매 불가</td>
+                                <td class="bg-prestige-gold/5 font-bold text-prestige-gold">무료 증정</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-white text-left pl-4 md:pl-8">광고학교 20% 할인</td>
+                                <td>-</td>
+                                <td class="bg-prestige-gold/5 font-bold text-prestige-gold">무료 증정</td>
+                            </tr>
+                            <tr class="border-t-2 border-gray-700">
+                                <td class="py-6 md:py-8 text-lg md:text-xl font-bold text-left pl-4 md:pl-8">최종 결제 금액</td>
+                                <td class="py-6 md:py-8 text-lg md:text-xl text-gray-500 line-through">10,980,000</td>
+                                <td class="py-6 md:py-8 bg-prestige-gold/10">
+                                    <div class="text-xs md:text-sm text-red-500 font-bold mb-1">32% SAVE</div>
+                                    <div class="text-2xl md:text-4xl font-black text-white">7,470,000<span class="text-lg md:text-xl font-normal text-gray-400 ml-1">원</span></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-4 max-w-md mx-auto">
+                <!-- [수정됨] 최종 CTA 버튼도 링크(a)로 변경 -->
+                <a href="#apply-link" class="w-full bg-prestige-gold hover:bg-yellow-500 text-black font-black py-5 rounded-xl text-xl shadow-lg transition-transform transform hover:scale-105 inline-block cursor-pointer">
+                    지금 수강 신청하기
+                </a>
+                <p class="text-xs text-gray-500">
+                    ※ 올인원 패키지는 적립금 사용, 할인 및 적립이 불가능합니다.<br>
+                    ※ 수업 시작일로부터 1년 이내 완강 시 혜택이 유지됩니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-gray-600 py-12 text-center text-xs border-t border-gray-900">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2024 KYJ Academy. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
