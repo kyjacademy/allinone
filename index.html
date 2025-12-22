@@ -33,6 +33,20 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        
+        .silver-gradient-text {
+            background: linear-gradient(to right, #A8A8A8, #E8E8E8, #9E9E9E, #F5F5F5, #888888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+        }
+        
+        .text-silver { 
+            background: linear-gradient(135deg, #E8E8E8, #F4FBFE, #FFFFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
         .glass-panel {
             background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(12px);
@@ -66,14 +80,26 @@
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* --- [SPECIAL BONUS] 사장의 달력 섹션 스타일 --- */
+        /* --- [SPECIAL BONUS] 달력/플래너 섹션 스타일 --- */
         .calendar-section {
-            background: radial-gradient(circle at center, #2a2510 0%, #000000 100%);
+            background: radial-gradient(circle at center, #2a2510 0%, #0a0a0a 100%);
             border-top: 2px solid #D4AF37;
             border-bottom: 2px solid #D4AF37;
-            padding: 80px 0;
+            padding: 50px 0;
             position: relative;
             overflow: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .calendar-section {
+                padding: 80px 0;
+            }
+        }
+        
+        .calendar-section.silver-theme {
+            background: radial-gradient(circle at center, #2a2a2a 0%, #0a0a0a 100%);
+            border-top: 2px solid #C0C0C0;
+            border-bottom: 2px solid #C0C0C0;
         }
         
         .spotlight {
@@ -83,26 +109,41 @@
             transform: translateX(-50%);
             width: 80%;
             height: 100%;
-            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.15) 0%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.08) 50%, rgba(0,0,0,0) 70%);
             pointer-events: none;
             z-index: 1;
+        }
+        
+        .calendar-section.silver-theme .spotlight {
+            background: radial-gradient(ellipse at center, rgba(232, 232, 232, 0.2) 0%, rgba(192, 192, 192, 0.1) 50%, rgba(0,0,0,0) 70%);
         }
 
         .calendar-layout {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 50px;
+            gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
             z-index: 10;
         }
 
-        @media (max-width: 1024px) {
+        @media (min-width: 768px) {
+            .calendar-layout {
+                gap: 40px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .calendar-layout {
+                gap: 50px;
+            }
+        }
+
+        @media (max-width: 1023px) {
             .calendar-layout {
                 flex-direction: column-reverse; /* 모바일: 이미지가 위로 */
-                gap: 30px;
             }
         }
 
@@ -117,6 +158,11 @@
             border-radius: 10px;
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .calendar-section.silver-theme .calendar-image {
+            box-shadow: 0 0 40px rgba(232, 232, 232, 0.25), 0 0 20px rgba(192, 192, 192, 0.15);
+            border: 1px solid rgba(232, 232, 232, 0.2);
         }
         
         .calendar-image img {
@@ -140,6 +186,11 @@
             font-size: 0.9rem;
             margin-bottom: 20px;
         }
+        
+        .calendar-section.silver-theme .calendar-tag {
+            background: linear-gradient(135deg, #A8A8A8, #E8E8E8, #C0C0C0);
+            box-shadow: 0 4px 15px rgba(192, 192, 192, 0.3);
+        }
 
         .section-title {
             font-size: 2rem; /* 모바일 최적화 */
@@ -155,29 +206,51 @@
         }
 
         .calendar-quote {
-            font-size: 1.3rem; /* 모바일 최적화 */
+            font-size: 1.25rem;
             font-weight: 700;
             color: #fff;
             line-height: 1.4;
             margin-bottom: 30px;
             border-left: 4px solid #D4AF37;
-            padding-left: 20px;
+            padding-left: 15px;
             font-family: 'Simple', serif;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
         }
         
         @media (min-width: 768px) {
-            .calendar-quote { font-size: 1.5rem; }
+            .calendar-quote { 
+                font-size: 1.5rem;
+                padding-left: 20px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .calendar-quote { 
+                font-size: 1.75rem;
+            }
+        }
+        
+        .calendar-section.silver-theme .calendar-quote {
+            border-left: 4px solid;
+            border-image: linear-gradient(to bottom, #A8A8A8, #E8E8E8, #C0C0C0) 1;
         }
 
         .text-gold { color: #D4AF37; }
 
         .feature-item {
-            margin-bottom: 20px;
-            background: rgba(255,255,255,0.05);
-            padding: 20px;
+            margin-bottom: 15px;
+            background: rgba(255,255,255,0.08);
+            padding: 15px;
             border-radius: 8px;
-            border: 1px solid rgba(212,175,55,0.1);
+            border: 1px solid rgba(212,175,55,0.15);
             transition: background 0.3s;
+        }
+        
+        @media (min-width: 768px) {
+            .feature-item {
+                margin-bottom: 20px;
+                padding: 20px;
+            }
         }
         
         .feature-item:hover {
@@ -185,18 +258,47 @@
             border-color: rgba(212,175,55,0.3);
         }
         
+        .calendar-section.silver-theme .feature-item {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(192,192,192,0.2);
+        }
+        
+        .calendar-section.silver-theme .feature-item:hover {
+            background: rgba(232,232,232,0.08);
+            border-color: rgba(232,232,232,0.4);
+            box-shadow: 0 0 20px rgba(192, 192, 192, 0.1);
+        }
+        
         .feature-item strong {
             color: #D4AF37;
-            font-size: 1.1rem;
+            font-size: 1rem;
             display: block;
             margin-bottom: 5px;
         }
         
+        @media (min-width: 768px) {
+            .feature-item strong {
+                font-size: 1.1rem;
+            }
+        }
+        
+        .calendar-section.silver-theme .feature-item strong {
+            background: linear-gradient(to right, #C0C0C0, #E8E8E8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
         .feature-item p {
-            color: #aaa;
-            font-size: 0.95rem;
-            line-height: 1.5;
+            color: #d0d0d0;
+            font-size: 0.875rem;
+            line-height: 1.6;
             margin: 0;
+        }
+        
+        @media (min-width: 768px) {
+            .feature-item p {
+                font-size: 0.95rem;
+            }
         }
 
         .month-plan {
@@ -212,11 +314,18 @@
         .month-box {
             background: #111;
             border: 1px solid #444;
-            padding: 10px;
+            padding: 8px;
             flex: 1;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #bbb;
+        }
+        
+        @media (min-width: 768px) {
+            .month-box {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
         }
         
         .month-box span {
@@ -224,6 +333,17 @@
             color: #D4AF37;
             font-weight: bold;
             margin-bottom: 5px;
+        }
+        
+        .calendar-section.silver-theme .month-box span {
+            background: linear-gradient(135deg, #C0C0C0, #E8E8E8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+        
+        .calendar-text > p {
+            color: #e0e0e0 !important;
         }
     </style>
     <script>
@@ -317,22 +437,28 @@
                 올인원 패키지
             </h1>
 
-            <!-- 혜택 버튼 그룹 -->
-            <div class="flex flex-col md:flex-row gap-3 md:gap-4 max-w-4xl mx-auto justify-center items-stretch">
-                <!-- 버튼 1: 311만원 할인 -->
-                <div class="flex-1 bg-black/60 backdrop-blur-sm border border-prestige-gold/30 rounded-lg px-4 py-3 hover:border-prestige-gold/60 transition-all duration-300 hover:bg-black/80">
-                    <div class="text-prestige-gold font-medium text-sm md:text-base mb-1">311만원</div>
+            <!-- 혜택 버튼 그룹 (4개) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 max-w-5xl mx-auto">
+                <!-- 버튼 1: 380만원 할인 -->
+                <div class="bg-black/60 backdrop-blur-sm border border-prestige-gold/30 rounded-lg px-4 py-3 hover:border-prestige-gold/60 transition-all duration-300 hover:bg-black/80">
+                    <div class="text-prestige-gold font-medium text-sm md:text-base mb-1">380만원</div>
                     <div class="text-white text-xl md:text-xl font-bold">최대 수강료 할인</div>
                 </div>
                 
                 <!-- 버튼 2: 사장의 달력 -->
-                <div class="flex-1 bg-black/60 backdrop-blur-sm border border-prestige-gold/30 rounded-lg px-4 py-3 hover:border-prestige-gold/60 transition-all duration-300 hover:bg-black/80">
+                <div class="bg-black/60 backdrop-blur-sm border border-prestige-gold/30 rounded-lg px-4 py-3 hover:border-prestige-gold/60 transition-all duration-300 hover:bg-black/80">
                     <div class="text-prestige-gold font-medium text-sm md:text-base mb-1">따라만 하면 성공하는 치트키</div>
                     <div class="text-white text-xl md:text-xl font-bold">사장의 달력 2026</div>
                 </div>
                 
-                <!-- 버튼 3: 광고학교 할인 -->
-                <div class="flex-1 bg-black/60 backdrop-blur-sm border border-prestige-gold/30 rounded-lg px-4 py-3 hover:border-prestige-gold/60 transition-all duration-300 hover:bg-black/80">
+                <!-- 버튼 3: 완벽한플래너 -->
+                <div class="bg-black/60 backdrop-blur-sm border border-prestige-gold/30 rounded-lg px-4 py-3 hover:border-prestige-gold/60 transition-all duration-300 hover:bg-black/80">
+                    <div class="text-prestige-gold font-medium text-sm md:text-base mb-1">52주 김사부 비공개 영상</div>
+                    <div class="text-white text-xl md:text-xl font-bold">완벽한플래너2026</div>
+                </div>
+                
+                <!-- 버튼 4: 광고학교 할인 -->
+                <div class="bg-black/60 backdrop-blur-sm border border-prestige-gold/30 rounded-lg px-4 py-3 hover:border-prestige-gold/60 transition-all duration-300 hover:bg-black/80">
                     <div class="text-prestige-gold font-medium text-sm md:text-base mb-1">대한온라인광고학교</div>
                     <div class="text-white text-xl md:text-xl font-bold">20% 할인권</div>
                 </div>
@@ -348,7 +474,7 @@
                 <p class="text-gray-400 mt-4 text-sm md:text-base">오직 패키지 구매자에게만 주어지는 특권입니다.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6 md:gap-8 mb-12">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-12">
                 <!-- Benefit 1 -->
                 <div class="glass-panel p-6 md:p-8 rounded-2xl text-center group hover:bg-white/5 transition-colors">
                     <div class="w-14 h-14 md:w-16 md:h-16 bg-prestige-gold/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-prestige-gold transition-colors duration-300">
@@ -362,26 +488,42 @@
                     </p>
                 </div>
 
-                <!-- Benefit 2 -->
-                <div class="glass-panel p-6 md:p-8 rounded-2xl text-center border-prestige-gold shadow-gold-glow transform md:-translate-y-4 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 bg-prestige-gold text-black text-xs font-bold px-3 py-1">BEST</div>
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-prestige-gold rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                        <i class="fas fa-calendar-alt text-xl md:text-2xl text-black"></i>
+                <!-- Benefit 2 - 사장의 달력 (실버 그라데이션 + NEW 뱃지) -->
+                <div class="glass-panel p-6 md:p-8 rounded-2xl text-center group hover:bg-white/5 transition-colors relative overflow-hidden">
+                    <div class="absolute top-0 right-0 text-black text-xs font-bold px-3 py-1" style="background: linear-gradient(135deg, #B8B8B8, #F0F0F0, #C0C0C0); box-shadow: 0 2px 8px rgba(192,192,192,0.4);">NEW</div>
+                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300" style="background: linear-gradient(135deg, rgba(192,192,192,0.2), rgba(232,232,232,0.2)); box-shadow: 0 0 20px rgba(192,192,192,0.2);">
+                        <i class="fas fa-calendar-alt text-xl md:text-2xl" style="background: linear-gradient(135deg, #C0C0C0, #E8E8E8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-prestige-gold mb-3">02. 사장의 달력 2026</h3>
-                    <p class="text-gray-300 text-sm leading-relaxed">
+                    <h3 class="text-lg md:text-xl font-bold mb-3">
+                        <span class="silver-gradient-text">02. 사장의 달력 2026</span>
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
                         따라만 하면 성공하는 치트키.<br>
                         365일 매일 내려지는 김사부의 코칭.<br>
                         <span class="text-white font-bold underline">더 이상 고민하지 마세요.</span>
                     </p>
                 </div>
 
-                <!-- Benefit 3 -->
+                <!-- Benefit 3 - 완벽한플래너 (골드 + BEST 뱃지) -->
+                <div class="glass-panel p-6 md:p-8 rounded-2xl text-center border-prestige-gold shadow-gold-glow relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-prestige-gold text-black text-xs font-bold px-3 py-1">BEST</div>
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-prestige-gold rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-book-open text-xl md:text-2xl text-black"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-prestige-gold mb-3">03. 완벽한플래너2026</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        52주 김사부 비공개 영상 제공.<br>
+                        매주 업데이트되는 매출 상승 비법.<br>
+                        <span class="text-white font-bold underline">정가 69만원 무료 증정.</span>
+                    </p>
+                </div>
+
+                <!-- Benefit 4 -->
                 <div class="glass-panel p-6 md:p-8 rounded-2xl text-center group hover:bg-white/5 transition-colors">
                     <div class="w-14 h-14 md:w-16 md:h-16 bg-prestige-gold/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-prestige-gold transition-colors duration-300">
                         <i class="fas fa-ad text-xl md:text-2xl text-prestige-gold group-hover:text-black"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-3">03. 광고학교 20% 할인</h3>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-3">04. 광고학교 20% 할인</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">
                         '대한온라인광고학교' 특별 할인권 제공.<br>
                         제대로 된 광고로 내 브랜드를<br>
@@ -390,9 +532,8 @@
                 </div>
             </div>
 
-            <!-- [수정됨] 수강신청 버튼 베네핏 하단으로 이동 및 링크 적용 -->
+            <!-- 수강신청 버튼 -->
             <div class="text-center">
-                <!-- 실제 링크는 href 속성에 입력하세요 (예: href="https://example.com/apply") -->
                 <a href="https://naver.me/x7n7TNWX" class="group relative inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-black transition-all duration-200 bg-gradient-to-r from-prestige-gold to-gold-light rounded-full focus:outline-none shadow-gold-glow hover:scale-105">
                     <span class="relative">지금 수강 신청하기</span>
                     <i class="fas fa-chevron-right ml-2 group-hover:translate-x-1 transition-transform"></i>
@@ -416,12 +557,10 @@
             </div>
             
             <div class="grid md:grid-cols-2 gap-6">
-                <!-- [수정됨] 각 과목 카드에 링크 적용 (div -> a) -->
-                
                 <!-- Course 1 -->
                 <a href="https://m.site.naver.com/15yLl" class="block bg-midnight p-6 md:p-8 rounded-xl border border-gray-800 hover:border-prestige-gold transition-colors group cursor-pointer">
                     <div class="flex justify-between items-start mb-6">
-                            <div class="flex-1">
+                        <div class="flex-1">
                             <span class="text-sm font-normal text-gray-500 block mb-2">장사는전략이다 심화과정</span>
                             <h3 class="text-xl md:text-2xl font-bold text-white group-hover:text-prestige-gold transition-colors">
                                 장전
@@ -437,7 +576,6 @@
                     </p>
                     <div class="w-full bg-gray-800 rounded-lg overflow-hidden relative" style="aspect-ratio: 1200/630;">
                         <img src="./assets/images/course-jangjeon.jpg" class="w-full h-full object-cover" alt="장사는 전략이다">
-                        <!-- Hover Overlay Effect -->
                         <div class="absolute inset-0 bg-prestige-gold/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </div>
                 </a>
@@ -501,7 +639,6 @@
                         가격 올리면 손님 끊길까 봐 무서우신가요?<br>
                         비싸게 팔아도 손님이 오히려 '고맙다'고 하게 만드는 비법이 있습니다.<br>
                         <strong class="text-white">진짜 이익을 남기는 무기를 장착해 드립니다.</strong>
-                        
                     </p>
                     <div class="w-full bg-gray-800 rounded-lg overflow-hidden relative" style="aspect-ratio: 1200/630;">
                         <img src="./assets/images/course-pricing.jpg" class="w-full h-full object-cover" alt="당신의 가격은 틀렸습니다">
@@ -511,6 +648,7 @@
             </div>
         </div>
     </section>
+
     <!-- Section 4: Class Schedule -->
     <section class="py-16 md:py-24 bg-midnight relative border-t border-gray-800">
         <div class="container mx-auto px-6 max-w-5xl">
@@ -623,32 +761,121 @@
         </div>
     </section>
 
-    <!-- Special Bonus Section (The Calendar) -->
+    <!-- Special Bonus #1: 완벽한플래너2026 -->
     <section class="calendar-section">
         <div class="spotlight"></div>
-        <div class="container mx-auto px-6" style="position: relative; z-index: 2;">
-            <div class="text-center" style="margin-bottom: 30px; md:margin-bottom: 50px;">
-                <span class="calendar-tag">SPECIAL BONUS</span>
-                <h2 class="section-title" style="color: #fff; margin-top: 10px;">
-                    올인원 패키지 <span style="color:#D4AF37;">X</span> 사장의 달력
-                </h2>
-                <p style="color: #D4AF37; letter-spacing: 2px;">THEORY TO ACTION</p>
+        <div class="container mx-auto px-4 md:px-6" style="position: relative; z-index: 2;">
+            <div class="text-center" style="margin-bottom: 30px; padding: 0 10px;">
+                <!-- BEST 뱃지를 SPECIAL BONUS 앞으로 이동 -->
+                <div style="margin-bottom: 5px;">
+                    <div style="display: inline-block; background: linear-gradient(135deg, #D4AF37, #FCD34D, #B38728); color: #000; padding: 5px 14px; font-weight: 800; font-size: 0.7rem; border-radius: 4px; box-shadow: 0 2px 8px rgba(212,175,55,0.4); margin-right: 8px;">BEST</div>
+                    <span class="calendar-tag" style="font-size: 0.8rem; padding: 4px 10px;">SPECIAL BONUS</span>
+                </div>
+                
+                <!-- 타이틀 여백 확보 및 크기 확대 -->
+                <div style="overflow: visible; padding: 10px 0 15px 0;">
+                    <h2 class="text-5xl md:text-7xl font-black" style="margin: 0; word-break: keep-all; line-height: 1.0;">
+                        <span class="gold-gradient-text" style="display: block; padding: 10px 0;">완벽한 플래너 2026</span>
+                    </h2>
+                </div>
+                
+                <p style="color: #D4AF37; letter-spacing: 1.5px; font-size: 0.75rem; margin-top: 10px; font-weight: 600;">THIS IS A PERFECT PLANNER FOR SMALL BUSINESS OWNERS.</p>
+            </div>
+
+            <div class="calendar-layout">
+                <!-- YouTube 영상 임베드 -->
+                <div class="calendar-image">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);">
+                        <iframe 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                            src="https://www.youtube.com/embed/PfytcVqHB7s?rel=0&modestbranding=1" 
+                            title="완벽한플래너2026 소개 영상" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- 텍스트 콘텐츠 -->
+                <div class="calendar-text">
+                    <div class="calendar-quote" style="overflow: visible; word-break: keep-all; padding-right: 15px;">
+                        "<span class="block sm:inline">매출을 올려주는 52주 주간플래너</span><br class="hidden sm:block">
+                        <span class="text-gold" style="display: inline-block; margin-top: 8px;">매주 업데이트되는 김사부 비공개 영상</span>"
+                    </div>
+                    
+                    <p style="color: #e0e0e0; margin-bottom: 25px; line-height: 1.7; font-size: 0.9rem;">
+                        자영업 오너가 아이디어가 샘솟는 <span style="color: #fff; font-weight: bold;">기념일 일정</span>과 <span style="color: #fff; font-weight: bold;">1년의 세무 일정</span>, <span style="color: #fff; font-weight: bold;">24절기</span>가 표시되어 있고,<br class="hidden md:block">
+                        <span class="text-gold font-bold">"장사의 神" 김유진 작가님의 특별 교육 영상</span>을 매주 만나볼 수 있는 자영업 오너들을 위한 주간 플래너입니다.
+                    </p>
+
+                    <div class="calendar-features">
+                        <div class="feature-item">
+                            <strong>01. 매주 업데이트되는 비공개 영상</strong>
+                            <p>1년동안 52개의 영상을 매주 업로드. 시기에 맞는 매출이 오르는 비법 영상들을 놓치지 말고 받아보세요!</p>
+                        </div>
+                        <div class="feature-item">
+                            <strong>02. 자영업 오너 맞춤 일정 관리</strong>
+                            <p>기념일, 세무일정, 24절기가 미리 표시되어 매출 기회를 절대 놓치지 않습니다.</p>
+                        </div>
+                        <div class="feature-item">
+                            <strong>03. 주간 단위 실행 플래너</strong>
+                            <p>배운 전략을 바로 실행할 수 있도록 설계된 52주 주간 플래너로 꾸준한 성장을 보장합니다.</p>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 25px; color: #D4AF37; font-weight: bold; font-size: 0.85rem;">
+                        ※ 정가 690,000원 / 패키지 구매자 한정 무료 제공
+                    </p>
+                </div>
+            </div>
+
+            <!-- 제품 이미지 (하단 추가) -->
+            <div class="mt-10 md:mt-16 text-center px-4">
+                <img src="./assets/images/planner-perfect-2026.jpg" 
+                     alt="완벽한플래너2026 제품 이미지" 
+                     class="max-w-full md:max-w-3xl mx-auto rounded-lg shadow-gold-glow"
+                     style="border: 1px solid rgba(212, 175, 55, 0.3);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Bonus #2: 사장의 달력 -->
+    <section class="calendar-section silver-theme">
+        <div class="spotlight"></div>
+        <div class="container mx-auto px-4 md:px-6" style="position: relative; z-index: 2;">
+            <div class="text-center" style="margin-bottom: 30px; padding: 0 10px;">
+                <!-- NEW 뱃지를 SPECIAL BONUS 앞으로 이동 -->
+                <div style="margin-bottom: 5px;">
+                    <div style="display: inline-block; background: linear-gradient(135deg, #B8B8B8, #F0F0F0, #C0C0C0); color: #000; padding: 5px 14px; font-weight: 800; font-size: 0.7rem; border-radius: 4px; box-shadow: 0 2px 8px rgba(192,192,192,0.4); margin-right: 8px;">NEW</div>
+                    <span class="calendar-tag" style="font-size: 0.8rem; padding: 4px 10px;">SPECIAL BONUS #2</span>
+                </div>
+                
+                <!-- 타이틀 여백 확보 및 크기 확대 -->
+                <div style="overflow: visible; padding: 10px 0 15px 0;">
+                    <h2 style="margin: 0; word-break: keep-all; line-height: 1.0;">
+                        <span class="silver-gradient-text text-5xl md:text-7xl font-black" style="display: inline;">사장의 달력 2026</span>
+                    </h2>
+                </div>
+                
+                <p class="silver-gradient-text" style="letter-spacing: 1.5px; font-weight: 600; font-size: 0.75rem; margin-top: 10px;">THEORY TO ACTION</p>
             </div>
 
             <div class="calendar-layout">
                 <!-- Text Content -->
                 <div class="calendar-text">
-                    <div class="calendar-quote">
-                        "올인원 패키지로 무장하셨습니까?<br>
-                        그렇다면 2026년,<span class="text-gold">실패할 자유를 박탈합니다.</span>"
+                    <div class="calendar-quote" style="border-left: 4px solid; border-image: linear-gradient(to bottom, #A8A8A8, #E8E8E8, #C0C0C0) 1; overflow: visible; word-break: keep-all; padding-right: 15px;">
+                        "<span class="block sm:inline">올인원 패키지로 무장하셨습니까?</span><br class="hidden sm:block">
+                        <span class="block sm:inline">그렇다면 2026년,</span><br class="sm:hidden">
+                        <span class="text-silver" style="display: inline-block; margin-top: 8px;">실패할 자유를 박탈합니다.</span>"
                     </div>
                     
-                    <p style="color: #ccc; margin-bottom: 30px; line-height: 1.6; font-size: 0.95rem;">
+                    <p style="color: #e0e0e0; margin-bottom: 25px; line-height: 1.7; font-size: 0.9rem;">
                         2026년, 당신이 망하고 싶어도 망할 수 없게 만들었습니다.<br>
                         매일 아침 출근해서 "오늘은 뭐 하지?" 고민하십니까? 그 고민이 당신의 매출을 갉아먹고 있습니다.<br>
                         <br>
-                        <span class="text-white-500 font-bold">＜사장의 달력 2026＞은 단순한 달력이 아닙니다.</span><br>
-                        대한민국 자영업의 전설, 김사부가 1월 1일부터 12월 31일까지당신의 책상 위에서 매일 아침 '승리의 전략'을 명령합니다.
+                        <span style="color: #fff; font-weight: bold;">＜사장의 달력 2026＞은 단순한 달력이 아닙니다.</span><br>
+                        대한민국 자영업의 전설, 김사부가 1월 1일부터 12월 31일까지 당신의 책상 위에서 매일 아침 '승리의 전략'을 명령합니다.
                     </p>
 
                     <div class="calendar-features">
@@ -671,12 +898,12 @@
                         </div>
                     </div>
                     
-                    <p style="margin-top: 30px; color: #D4AF37; font-weight: bold; font-size: 0.9rem;">
-                        ※ 추후 정식 판매 예정작 / 패키지 구매자 한정 무료 제공
+                    <p style="margin-top: 25px; font-weight: bold; font-size: 0.85rem;">
+                        <span class="silver-gradient-text">※ 추후 정식 판매 예정작 / 패키지 구매자 한정 무료 제공</span>
                     </p>
                 </div>
 
-                <!-- Image Content (High Quality Mockup) -->
+                <!-- Image Content -->
                 <div class="calendar-image">
                     <img src="./assets/images/calendar-2026.jpg" alt="사장의 달력 2026 이미지">
                 </div>
@@ -691,7 +918,7 @@
                 대한민국 자영업계의 전설로 가는<br>
                 <span class="text-5xl md:text-7xl font-black gold-gradient-text">확정된 지도</span>
             </h2>
-            <p class="text-gray-400 mb-12 md:mb-16 text-sm md:text-base">올인원 패키지 등록시 '사장의 달력 2026'이 제공됩니다.</p>
+            <p class="text-gray-400 mb-12 md:mb-16 text-sm md:text-base">올인원 패키지 등록시 '완벽한플래너2026'과 '사장의 달력 2026'이 제공됩니다.</p>
 
             <div class="bg-dark-card rounded-2xl overflow-hidden border border-gray-800 shadow-2xl mb-12">
                 <div class="overflow-x-auto">
@@ -717,15 +944,20 @@
                                 <td class="bg-prestige-gold/5 font-bold text-prestige-gold">무료 증정</td>
                             </tr>
                             <tr>
+                                <td class="font-bold text-white text-left pl-4 md:pl-8">완벽한플래너2026</td>
+                                <td>690,000원</td>
+                                <td class="bg-prestige-gold/5 font-bold text-prestige-gold">무료 증정</td>
+                            </tr>
+                            <tr>
                                 <td class="font-bold text-white text-left pl-4 md:pl-8">광고학교 20% 할인</td>
                                 <td>198,000원</td>
                                 <td class="bg-prestige-gold/5 font-bold text-prestige-gold">무료 증정</td>
                             </tr>
                             <tr class="border-t-2 border-gray-700">
                                 <td class="py-6 md:py-8 text-lg md:text-xl font-bold text-left pl-4 md:pl-8">최종 결제 금액</td>
-                                <td class="py-6 md:py-8 text-lg md:text-xl text-gray-500 line-through">10,587,000</td>
+                                <td class="py-6 md:py-8 text-lg md:text-xl text-gray-500 line-through">11,277,000</td>
                                 <td class="py-6 md:py-8 bg-prestige-gold/10">
-                                    <div class="text-xs md:text-sm text-red-500 font-bold mb-1">3,117,000원 SAVE</div>
+                                    <div class="text-xs md:text-sm text-red-500 font-bold mb-1">3,807,000원 SAVE</div>
                                     <div class="text-2xl md:text-4xl font-black text-white">7,470,000<span class="text-lg md:text-xl font-normal text-gray-400 ml-1">원</span></div>
                                 </td>
                             </tr>
@@ -735,7 +967,6 @@
             </div>
 
             <div class="flex flex-col gap-4 max-w-md mx-auto">
-                <!-- [수정됨] 최종 CTA 버튼도 링크(a)로 변경 -->
                 <a href="https://naver.me/x7n7TNWX" class="w-full bg-prestige-gold hover:bg-yellow-500 text-black font-black py-5 rounded-xl text-xl shadow-lg transition-transform transform hover:scale-105 inline-block cursor-pointer">
                     지금 수강 신청하기
                 </a>
