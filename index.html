@@ -11,8 +11,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    
+    <!-- Paperlogy 폰트 로드 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy.css" type="text/css"/>
+
     <style>
         /* [폰트 적용] */
         @font-face {
@@ -26,7 +27,25 @@
         body {
             word-break: keep-all; 
             overflow-x: hidden;
+            /* 기본 폰트 Paperlogy 적용 및 기본 굵기 상향 (400 -> 500) */
+            font-family: 'Paperlogy', sans-serif !important;
+            font-weight: 500; 
         }
+
+        /* [폰트 굵기 1단계씩 상향 조정] 
+           기존 Tailwind 클래스의 동작을 재정의하여 전체적으로 두껍게 만듭니다.
+           Paperlogy 가중치: 100~900 지원
+        */
+        .font-thin       { font-weight: 200 !important; } /* 100 -> 200 */
+        .font-extralight { font-weight: 300 !important; } /* 200 -> 300 */
+        .font-light      { font-weight: 400 !important; } /* 300 -> 400 */
+        .font-normal     { font-weight: 500 !important; } /* 400 -> 500 */
+        .font-medium     { font-weight: 600 !important; } /* 500 -> 600 */
+        .font-semibold   { font-weight: 700 !important; } /* 600 -> 700 */
+        .font-bold       { font-weight: 800 !important; } /* 700 -> 800 */
+        .font-extrabold  { font-weight: 900 !important; } /* 800 -> 900 */
+        .font-black      { font-weight: 900 !important; } /* 900 유지 (Max) */
+
 
         .gold-gradient-text {
             background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
@@ -357,7 +376,8 @@
                         'dark-card': '#0F172A',
                     },
                     fontFamily: {
-                        sans: ['"Noto Sans KR"', 'sans-serif'],
+                        // [폰트 변경] Noto Sans KR -> Paperlogy
+                        sans: ['"Paperlogy"', 'sans-serif'],
                         serif: ['"Simple"', 'serif'], 
                     },
                     boxShadow: {
@@ -780,7 +800,7 @@
                 </div>
                 
             <!-- 제품 이미지 -->
-            <div class="mb-8 md:mb-12 text-center px-4">
+            <div class="mb-8 md:mb-12 text-center px-4 mx-auto">
                 <img src="./assets/images/planner-perfect-2026.jpg" 
                      alt="완벽한플래너2026 제품 이미지" 
                      class="max-w-full md:max-w-3xl mx-auto rounded-lg shadow-gold-glow"
